@@ -47,9 +47,15 @@
           <div class="btn" hm-tap="PairSphere()">PAIR</div>
         </form>
       </div>
-      <div class="container paired" ng-if="IsPaired">
-        <h2>Congralutions</h2>
-        <h5>Your Sphere is paired</h5>
+      <div class="container pair" ng-if="IsPaired">
+        <h4>Congralutions</h4>
+        <p>Your Sphere is paired</p>
+
+        <div ng-if="Node.local_ip">
+          <h5>Navigate to your sphere at {{ Node.local_ip }}</h5>
+          <small>Note: you will need to be on the same network</small><br>
+          <a class="btn" href="http://{{ Node.local_ip }}">Go to my Sphere</a>
+        </div>
       </div>
     </div>
 

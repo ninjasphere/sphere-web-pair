@@ -35,16 +35,17 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
     $rootScope.User = user;
   }
 
-  $timeout(function() {
-    doLogin({"user_id":"80eykz","site_id":"75e62f02-1d40-4a0a-86e4-f705cff14f36","node_id":"HELLO1234568888YYY", "name": "Theo"});
-
-  }, 1000);
+  // $timeout(function() {
+  //   doLogin({"user_id":"80eykz","site_id":"75e62f02-1d40-4a0a-86e4-f705cff14f36","node_id":"HELLO1234568888YYY", "name": "Theo"});
+  //
+  // }, 1000);
 
 
   var userResource = $resource('/rest/v1/user', {});
   userResource.get(function(response) {
     doLogin(response);
-
+  }, function error(response) {
+    window.location.href='/auth/ninja';
   });
 
 

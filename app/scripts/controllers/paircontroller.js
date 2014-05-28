@@ -9,19 +9,23 @@ angular.module('sphereWebPairApp')
 
     $scope.User;
 
+    $scope.Node;
+
 
     $scope.PairSphere = function() {
       if (this.formPair.$valid) {
+        // $scope.PairSuccess();
         PairResource.save({ nodeId: $scope.Serial }, function(response) {
           if (response.node_id){
-            $scope.PairSuccess()
+            $scope.PairSuccess(response)
           }
         });
       }
     }
 
-    $scope.PairSuccess = function() {
+    $scope.PairSuccess = function(node) {
       $rootScope.IsPaired = true;
+      $scope.Node = node;
     }
 
     $rootScope.$on(USER_LOADED, function(event, user) {
