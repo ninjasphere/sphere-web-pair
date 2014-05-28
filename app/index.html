@@ -49,11 +49,12 @@
       </div>
       <div class="container pair" ng-if="IsPaired">
         <h4>Congratulations</h4>
-        <p>Your Sphere is paired</p>
+        <p>Your Spheramid is paired</p>
 
         <div ng-if="Node.local_ip">
-          <h5>Navigate to your sphere at {{ Node.local_ip }}</h5>
-          <small>Note: you will need to be on the same network</small><br><br>
+          <img src="/images/spheramid.png" alt="Spheramid" />
+          <h5>Your Spheramid's local ip address is {{ Node.local_ip }}</h5>
+          <small>Note: you will need to be on the same network to gain access</small><br><br>
           <a class="btn" href="http://{{ Node.local_ip }}">Go to my Sphere</a>
         </div>
       </div>
