@@ -1,0 +1,26 @@
+
+.roomcalibration {
+
+  .tags {
+    display: block;
+
+    .tag {
+      line-height: 2.4em;
+    }
+  }
+
+  .calibration-progress {
+    position: relative;
+    left: 0.2em;
+    text-align: center;
+    font-size: 2.6em;
+    font-weight: 800;
+    margin: 1em 0 1.6em;
+
+    small {
+      font-weight: 600;
+      font-size: 0.4em;
+      vertical-align: super;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+
+html {
+  background-color: hsl(214,48%,14%);
+}
+h4 {
+  font-style: normal;
+  font-weight: 600;
+  color: black;
+  text-transform: uppercase;
+}
+
+
+.navbar {
+  margin-bottom: 0px;
+
+  .navbar-brand {
+    padding: 8px 20px;
+
+    h1 {
+      font-weight: 600;
+      font-size: 22px;
+      color: #EEE;
+
+      span {
+        font-weight: 300;
+      }
+    }
+    img {
+      width: 25px;
+      margin-right: 0.4em;
+    }
+  }
+}
+
+// BLE Device icon
+.navbar-inverse .pop-dialog .notifications .item > i {
+  color: hsl(269,57%,69%) !important;
+}
+
+
+#pad-wrapper h4 {
+  color: inherit;
+  font-style: normal;
+}
+
+
+.table {
+  tr {
+    td {
+      font-size: 1.2em;
+
+      &.row-label {
+        font-size: 1.4em;
+        font-weight: 800;
+      }
+
+      &.two-line {
+        position: relative;
+        padding-top: 0.5em;
+      }
+
+      .subtext {
+        display: block;
+        font-size: 0.6em;
+        font-weight: 300;
+      }
+    }
+  }
+}
