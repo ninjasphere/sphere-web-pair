@@ -11,6 +11,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/ladda/dist/ladda.min.css" />
+    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -44,7 +47,10 @@
           </label>
           <input type="text" name="serial" id="serial" ng-model="Serial" placeholder="Serial Number" ng-required="true">
           <div class="error" ng-show="formPair.serial.$dirty && formPair.serial.$invalid">Please enter your Serial Number</div>
-          <div class="btn" hm-tap="PairSphere()">PAIR</div>
+          <!-- <div class="btn" hm-tap="PairSphere()">PAIR</div> -->
+          <button ladda="Pairing" hm-tap="PairSphere()" data-style="contract-overlay">
+            Pair
+          </button>
         </form>
       </div>
       <div class="container pair" ng-if="IsPaired">
@@ -89,6 +95,10 @@
     <script src="bower_components/angular-hammer/angular-hammer.js"></script>
     <script src="bower_components/Snap.svg/dist/snap.svg-min.js"></script>
     <script src="bower_components/classie/classie.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/ladda/dist/ladda.min.js"></script>
+    <script src="bower_components/angular-ladda/dist/angular-ladda.min.js"></script>
+    <script src="bower_components/ngDialog/js/ngDialog.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

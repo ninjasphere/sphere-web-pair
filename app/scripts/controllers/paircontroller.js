@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sphereWebPairApp')
-  .controller('PairControllerCtrl', function ($rootScope, $scope, $resource, SERVER, USER_LOADED) {
+  .controller('PairControllerCtrl', function ($rootScope, $scope, $timeout, $resource, ngDialog, SERVER, USER_LOADED) {
 
     var PairResource = $resource('/rest/v1/node');
 
@@ -13,14 +13,30 @@ angular.module('sphereWebPairApp')
 
     $scope.Serial;
 
+    $scope.Pairing = false;
 
     $scope.PairSphere = function() {
       if (this.formPair.$valid) {
-        // $scope.PairSuccess();
-        PairResource.save({ nodeId: this.Serial }, function(response) {
-          if (response.node_id){
-            $scope.PairSuccess(response)
-          }
+        $scope.Pairing = true;
+        PairResource.save({ nodeId: this.Serial }, function success(response) {
+          $timeout(function() {
+            $scope.Pairing = false;
+            if (response.node_id){
+              $scope.PairSuccess(response)
+            }
+          }, 2000);
+        }, function error(response) {
+          $timeout(function() {
+            $scope.Pairing = false;
+
+            ngDialog.open({
+              template: '/views/modalpairerror.html',
+              scope: $scope,
+              data: JSON.stringify(response.data),
+              showClose: true
+            })
+
+          })
         });
       }
     }

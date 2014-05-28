@@ -5,7 +5,9 @@ angular
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'hmTouchEvents'
+    'hmTouchEvents',
+    'angular-ladda',
+    'ngDialog'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -26,7 +28,6 @@ angular.module('sphereWebPairApp')
 
 
 angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout, SERVER, LOADED, USER_LOADED) {
-  console.log("Main Run");
 
   var doLogin = function(user) {
     $rootScope.$broadcast(LOADED);
@@ -43,7 +44,7 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
     }, function error(response) {
       window.location.href='/auth/ninja';
     });
-  }, 2000);
+  }, 1000);
 
 
 

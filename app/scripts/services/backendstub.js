@@ -10,7 +10,7 @@
       .config(function($provide) {
         $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
       })
-      .run(function($httpBackend, SERVER) {
+      .run(function($httpBackend, $timeout, SERVER) {
         console.log("Setting up Stubs on ", SERVER);
         var user = {
           'user_id':'80eykz',
@@ -23,8 +23,8 @@
         });
 
         $httpBackend.whenPOST('/rest/v1/node').respond(function(method, url, data) {
-          console.log("Fake Node", data);
-          return [200, { node_id: '123456789', local_ip: 'www.google.com'}];
+
+          return [200, { node_id: '123456789', local_ip: 'www.google.com', code: 32, message: "Could not find Spheramid"}];
         })
 
       $httpBackend.whenGET(/^\/views\//).passThrough();
