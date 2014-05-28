@@ -9,6 +9,7 @@
     "angular-resource": "1.2.15",
     "angular-sanitize": "1.2.15",
     "angular-route": "1.2.15",
+    "angular-mocks": "1.2.15",
     "underscore": "~1.6.0",
     "angular-hammer": "~1.0.3",
     "Snap.svg": "~0.2.0",

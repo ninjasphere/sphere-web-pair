@@ -17,8 +17,12 @@
   "unused": true,
   "strict": true,
   "trailing": true,
-  "smarttabs": true,
+  "smarttabs": false,
   "globals": {
-    "angular": false
+    "angular": false,
+    "classie": false,
+    "SVGLoader": false,
+    "mina": false,
+    "Snap": false
   }
 }

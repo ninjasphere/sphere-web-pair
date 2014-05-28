@@ -3,7 +3,7 @@
 angular.module('sphereWebPairApp')
   .controller('PairControllerCtrl', function ($rootScope, $scope, $resource, SERVER, USER_LOADED) {
 
-    var PairResource = $resource(SERVER + '/rest/v1/node');
+    var PairResource = $resource('/rest/v1/node');
 
     $rootScope.IsPaired = false;
 
@@ -11,11 +11,13 @@ angular.module('sphereWebPairApp')
 
     $scope.Node;
 
+    $scope.Serial;
+
 
     $scope.PairSphere = function() {
       if (this.formPair.$valid) {
         // $scope.PairSuccess();
-        PairResource.save({ nodeId: $scope.Serial }, function(response) {
+        PairResource.save({ nodeId: this.Serial }, function(response) {
           if (response.node_id){
             $scope.PairSuccess(response)
           }

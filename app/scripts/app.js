@@ -20,13 +20,13 @@ angular
 
 
 angular.module('sphereWebPairApp')
-  .value('SERVER', window.location.protocol + '//' + window.location.hostname)
+  .value('SERVER', window.location.protocol + '//' + window.location.hostname  + ((window.location.port !== '80') ? ':' + window.location.port : ''))
   .value('USER_LOADED', 'userLoaded')
   .value('LOADED', 'loaded')
 
 
 angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout, SERVER, LOADED, USER_LOADED) {
-
+  console.log("Main Run");
 
   var doLogin = function(user) {
     $rootScope.$broadcast(LOADED);
@@ -35,18 +35,15 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
     $rootScope.User = user;
   }
 
-  // $timeout(function() {
-  //   doLogin({"user_id":"80eykz","site_id":"75e62f02-1d40-4a0a-86e4-f705cff14f36","node_id":"HELLO1234568888YYY", "name": "Theo"});
-  //
-  // }, 1000);
 
-
-  var userResource = $resource('/rest/v1/user', {});
-  userResource.get(function(response) {
-    doLogin(response);
-  }, function error(response) {
-    window.location.href='/auth/ninja';
-  });
+  $timeout(function() {
+    var userResource = $resource('/rest/v1/user', {});
+    userResource.get(function(response) {
+      doLogin(response);
+    }, function error(response) {
+      window.location.href='/auth/ninja';
+    });
+  }, 2000);
 
 
 
