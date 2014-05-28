@@ -1,23 +1,9 @@
 @import 'compass/css3';
 
-@import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss';
-// @import '../css/bootstrap/bootstrap.css';
-@import '../css/bootstrap/bootstrap-overrides.css';
-
-@import '../css/lib/jquery-ui-1.10.2.custom.css';
-@import '../css/lib/font-awesome.css';
-
 @import 'fonts';
-@import 'modal';
+@import 'buttons';
+
+@import 'loader';
 @import 'layout';
-@import 'elements';
-@import 'icons';
-@import 'skins/dark';
-@import 'index';
-@import 'form-wizard';
-@import 'tables';
-
-
-
-@import "sphere";
-@import "roomcalibration";
+@import 'form';
+@import 'sphere';

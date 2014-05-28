@@ -1,0 +1,15 @@
+
+input[type=text], input[type=password] {
+  border: 2px solid #CCC;
+  padding: 0.3em 0.6em;
+  font-size: 1.6em;
+  font-family: 'Open Sans';
+  font-weight: 700;
+  outline: none !important;
+  @include border-radius(0.3em);
+}
+
+label {
+  font-weight: 700;
+  line-height: 1.4em;
+}

@@ -1,0 +1,35 @@
+.pageload-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    visibility: visible;
+    z-index: 100;
+    @include opacity(1);
+
+    .loading {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 45%;
+      z-index: 1001;
+      color: white;
+
+      h1,h2,h3,h4,h5,h6,p { color: #EEE; }
+    }
+}
+
+.pageload-overlay.show {
+    visibility: visible;
+}
+
+.pageload-overlay svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pageload-overlay svg path {
+    fill: hsl(215,47%,14%);
+}
