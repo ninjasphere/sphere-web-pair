@@ -59,21 +59,21 @@
         <div class="nodes" ng-if="Nodes.length > 0">
           <h3>Currently Paired</h3>
           <div class="node" ng-repeat="Node in Nodes">
-            {{ Node.name || 'Ninja Development Kit' }}
+            {{ Node.name || 'Ninja Developer Kit' }}
             <div class="btn" hm-tap="ConfirmNodeDelete(Node)">Unpair</div>
           </div>
         </div>
       </div>
       <div class="container pair" ng-if="IsPaired">
         <h4>Congratulations</h4>
-        <p>Your Spheramid is paired</p>
+        <p>Your Developer Kit is paired</p>
 
         <div ng-if="Node.metadata.local_ip">
           <img src="/images/devboard.png" alt="Spheramid" width="210" />
           <br><br>
-          <h5>Your Spheramid's local ip address is {{ Node.metadata.local_ip }}</h5>
+          <h5>Its local ip address is {{ Node.metadata.local_ip }}</h5>
           <small>Note: you will need to be on the same network to gain access</small><br><br>
-          <a class="btn" href="http://{{ Node.metadata.local_ip }}">Go to my Sphere</a>
+          <a class="btn" href="http://{{ Node.metadata.local_ip }}">Go to my Developer Kit</a>
         </div>
       </div>
     </div>
