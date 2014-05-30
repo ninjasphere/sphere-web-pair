@@ -3,9 +3,7 @@
 angular.module('sphereWebPairApp')
   .controller('PairControllerCtrl', function ($rootScope, $scope, $timeout, $resource, ngDialog, SERVER, USER_LOADED) {
 
-    var NodeResource = $resource('/rest/v1/node/:nodeId', { nodeId: '@node_id' }, {
-      get: { method: 'GET', isArray: true }
-    });
+    var NodeResource = $resource('/rest/v1/node/:nodeId', { nodeId: '@node_id' });
 
     $rootScope.IsPaired = false;
 
@@ -24,8 +22,8 @@ angular.module('sphereWebPairApp')
      */
     $scope.LoadSpheres = function() {
 
-      NodeResource.get(function(nodes) {
-        $scope.Nodes = nodes;
+      NodeResource.get(function(response) {
+        $scope.Nodes = response.nodes;
       })
     }
 
