@@ -757,10 +757,12 @@ header.navbar {
     padding: 2em 0 0; }
     .pair .nodes .node {
       width: 100%;
-      line-height: 1.7em;
+      line-height: 1.4em;
       clear: both;
       text-align: left;
       margin: 0 0 1em; }
+      .pair .nodes .node small {
+        color: #a6a6a6; }
     .pair .nodes .btn {
       padding: 0em 0.4em;
       font-size: 0.9em;

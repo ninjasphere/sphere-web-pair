@@ -21,7 +21,7 @@
         var nodes = {
             nodes: [
               { node_id: '123456789', name: 'My Dev Kit 1'},
-              { node_id: '123456789', name: 'My Dev Kit 2'}
+              { node_id: '123456789', name: ''}
             ]
         };
 

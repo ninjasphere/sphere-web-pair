@@ -152,10 +152,14 @@ header {
 
     .node {
       width: 100%;
-      line-height: 1.7em;
+      line-height: 1.4em;
       clear: both;
       text-align: left;
       margin: 0 0 1em;
+
+      small {
+        color: hsl(0,0%,65%)
+      }
     }
 
     $btnColor: hsl(360,82%,41%);

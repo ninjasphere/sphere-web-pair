@@ -58,9 +58,11 @@
 
         <div class="nodes" ng-if="Nodes.length > 0">
           <h3>Currently Paired</h3>
+          <br>
           <div class="node" ng-repeat="Node in Nodes">
-            {{ Node.name || 'Ninja Developer Kit' }}
             <div class="btn" hm-tap="ConfirmNodeDelete(Node)">Unpair</div>
+            <strong>{{ Node.name || 'Ninja Developer Kit' }}</strong><br>
+            <small>{{ Node.node_id }}</small>
           </div>
         </div>
       </div>
