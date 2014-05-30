@@ -3,7 +3,9 @@
 angular.module('sphereWebPairApp')
   .controller('PairControllerCtrl', function ($rootScope, $scope, $timeout, $resource, ngDialog, SERVER, USER_LOADED) {
 
-    var PairResource = $resource('/rest/v1/node');
+    var NodeResource = $resource('/rest/v1/node/:nodeId', { nodeId: '@node_id' }, {
+      get: { method: 'GET', isArray: true }
+    });
 
     $rootScope.IsPaired = false;
 
@@ -11,14 +13,31 @@ angular.module('sphereWebPairApp')
 
     $scope.Node;
 
+    $scope.Nodes = [];
+
     $scope.Serial;
 
     $scope.Pairing = false;
 
+    /**
+     * Loads all spheres / dev kits
+     */
+    $scope.LoadSpheres = function() {
+
+      NodeResource.get(function(nodes) {
+        $scope.Nodes = nodes;
+      })
+    }
+
+    $scope.LoadSpheres();
+
+    /**
+     * Pairs a new sphere / dev kit
+     */
     $scope.PairSphere = function() {
       if (this.formPair.$valid) {
         $scope.Pairing = true;
-        PairResource.save({ nodeId: this.Serial }, function success(response) {
+        NodeResource.save({ nodeId: this.Serial }, function success(response) {
           $timeout(function() {
             $scope.Pairing = false;
             if (response.node_id){
@@ -28,6 +47,8 @@ angular.module('sphereWebPairApp')
         }, function error(response) {
           $timeout(function() {
             $scope.Pairing = false;
+
+            response.data.title = "Pairing Error";
 
             ngDialog.open({
               template: '/views/modalpairerror.html',
@@ -44,6 +65,34 @@ angular.module('sphereWebPairApp')
     $scope.PairSuccess = function(node) {
       $rootScope.IsPaired = true;
       $scope.Node = node;
+    }
+
+    $scope.ConfirmNodeDelete = function(node) {
+      ngDialog.open({
+        template: '/views/modalnodedelete.html',
+        scope: $scope,
+        data: JSON.stringify(node),
+        showClose: true
+      });
+    };
+
+    $scope.DeleteNode = function(node) {
+      NodeResource.delete({ nodeId: node.node_id}, function(response) {
+        if (response) {
+          ngDialog.closeAll();
+          $scope.LoadSpheres();
+        }
+      }, function(response) {
+
+        response.data.title = "Unpair Error";
+
+        ngDialog.open({
+          template: '/views/modalpairerror.html',
+          scope: $scope,
+          data: JSON.stringify(response.data),
+          showClose: true
+        })
+      })
     }
 
     $rootScope.$on(USER_LOADED, function(event, user) {

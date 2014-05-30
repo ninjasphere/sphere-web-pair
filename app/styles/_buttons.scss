@@ -2,10 +2,10 @@
 $buttonColor: hsl(72,100%,36%);
 $buttonShadowWidth: 4px;
 
-.btn {
+.btn, .ladda-button {
   position: relative;
   top: 0em;
-  padding: 0.3em 1em;
+  padding: 0.8em 1em;
   background: $buttonColor;
   text-align: center;
   display: inline-block;
@@ -13,9 +13,11 @@ $buttonShadowWidth: 4px;
   font-size: 1.3em;
   font-weight: 300;
   border-bottom: $buttonShadowWidth solid darken($buttonColor, 10%);
+  z-index: 0;
   // letter-spacing: 0.05em;
   @include border-radius(0.4em);
   @include transition(all 0.1s);
+
 
 
   &:hover {
@@ -23,5 +25,15 @@ $buttonShadowWidth: 4px;
     background: darken($buttonColor, 10%);
     border-bottom: $buttonShadowWidth/2 solid transparent;
     top: $buttonShadowWidth/1.5;
+  }
+
+  &.orange {
+    background-color: hsl(32,98%,56%);
+    border-color: darken(hsl(32,98%,56%), 10%);
+  }
+
+  &.red {
+    background-color: hsl(360,82%,41%);
+    border-color: darken(hsl(360,82%,41%), 10%);
   }
 }

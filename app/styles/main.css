@@ -32,10 +32,10 @@ body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial;
   font-size: 62.5%; }
 
-.btn {
+.btn, .ladda-button {
   position: relative;
   top: 0em;
-  padding: 0.3em 1em;
+  padding: 0.8em 1em;
   background: #93b800;
   text-align: center;
   display: inline-block;
@@ -43,6 +43,7 @@ body {
   font-size: 1.3em;
   font-weight: 300;
   border-bottom: 4px solid #6a8500;
+  z-index: 0;
   -webkit-border-radius: 0.4em;
   -moz-border-radius: 0.4em;
   -ms-border-radius: 0.4em;
@@ -52,11 +53,70 @@ body {
   -moz-transition: all 0.1s;
   -o-transition: all 0.1s;
   transition: all 0.1s; }
-  .btn:hover {
+  .btn:hover, .ladda-button:hover {
     cursor: pointer;
     background: #6a8500;
     border-bottom: 2px solid transparent;
     top: 2.66667px; }
+  .btn.orange, .ladda-button.orange {
+    background-color: #fd9621;
+    border-color: #e87d02; }
+  .btn.red, .ladda-button.red {
+    background-color: #be1313;
+    border-color: #900e0e; }
+
+.ngdialog {
+  padding-top: 100px !important; }
+  .ngdialog .ngdialog-content {
+    padding: 2em !important;
+    overflow: hidden;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial !important;
+    border: 2px solid #525c7a;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    -webkit-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    -ms-border-radius: 0.4em;
+    -o-border-radius: 0.4em;
+    border-radius: 0.4em; }
+    .ngdialog .ngdialog-content h1, .ngdialog .ngdialog-content h2, .ngdialog .ngdialog-content h3, .ngdialog .ngdialog-content h4, .ngdialog .ngdialog-content h5, .ngdialog .ngdialog-content h6 {
+      margin: 0px 0 1em;
+      font-weight: 300; }
+      .ngdialog .ngdialog-content h1 span, .ngdialog .ngdialog-content h2 span, .ngdialog .ngdialog-content h3 span, .ngdialog .ngdialog-content h4 span, .ngdialog .ngdialog-content h5 span, .ngdialog .ngdialog-content h6 span {
+        text-transform: uppercase; }
+    .ngdialog .ngdialog-content h3 {
+      font-weight: 800; }
+    .ngdialog .ngdialog-content h5 {
+      font-weight: 800;
+      font-size: 0.9em; }
+    .ngdialog .ngdialog-content p {
+      margin: 0 0 1.4em; }
+    .ngdialog .ngdialog-content strong {
+      font-weight: 800; }
+    .ngdialog .ngdialog-content input {
+      border: 2px solid #CCC;
+      width: 100%;
+      line-height: 2em;
+      font-family: 'Open Sans';
+      font-weight: 600;
+      padding: 0 0.5em;
+      margin: 0 0 1em;
+      -webkit-border-radius: 0.4em;
+      -moz-border-radius: 0.4em;
+      -ms-border-radius: 0.4em;
+      -o-border-radius: 0.4em;
+      border-radius: 0.4em; }
+    .ngdialog .ngdialog-content .spinner {
+      position: relative;
+      margin: 1em 0;
+      left: 50%; }
+    .ngdialog .ngdialog-content .btn {
+      padding: 0.3em 1em;
+      font-size: 1em; }
+    .ngdialog .ngdialog-content .absolute-right {
+      right: 2em;
+      bottom: 2em; }
 
 .pageload-overlay {
   position: fixed;
@@ -91,7 +151,6 @@ body {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #132135;
   position: relative;
   margin: 0px;
   font-size: 12px;
@@ -131,11 +190,9 @@ input.search {
   border-radius: 2px;
   top: 11px; }
 
-.header {
+header {
+  background: #132134;
   margin-bottom: 60px; }
-  .header h1, .header h2, .header h3, .header h4, .header h5 {
-    float: left;
-    margin-top: 5px; }
 
 /* Custom navbar stuff */
 /* search input */
@@ -441,22 +498,12 @@ input.search {
 
 .content {
   min-width: 400px;
-  min-height: 620px;
-  margin-bottom: 100px;
-  padding-bottom: 50px;
-  overflow: hidden;
   position: relative;
-  background: #fff;
-  margin-left: 177px;
-  border-left: 1px solid #dae3e9;
-  border-bottom: 1px solid #dae3e9;
-  border-radius: 0px 0px 0px 5px;
   z-index: 1;
-  -webkit-transition: margin-left .3s ease;
-  -moz-transition: margin-left .3s ease;
-  -o-transition: margin-left .3s ease;
-  -ms-transition: margin-left .3s ease;
-  transition: margin-left .3s ease;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
   /* starts skins changer */
   /* end skin changer*/ }
   .content.wide-content {
@@ -543,6 +590,16 @@ input.search {
 @media (min-width: 1200px) {
   .container {
     width: 1170px; } }
+.absolute-left {
+  position: absolute;
+  left: 1em;
+  bottom: 1em; }
+
+.absolute-right {
+  position: absolute;
+  right: 1em;
+  bottom: 1em; }
+
 /* responsive */
 @media (max-width: 768px) {
   #pad-wrapper {
@@ -604,7 +661,7 @@ label {
   line-height: 1.4em; }
 
 html {
-  background-color: #132135;
+  background-color: #f7f7f7;
   font-family: 'Open Sans'; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -694,3 +751,19 @@ header.navbar {
     font-size: 0.9em;
     line-height: 1.7em;
     margin: 0 0 1em; }
+  .pair .nodes {
+    margin: 3em auto;
+    max-width: 260px;
+    padding: 2em 0 0; }
+    .pair .nodes .node {
+      width: 100%;
+      line-height: 1.7em;
+      clear: both;
+      text-align: left;
+      margin: 0 0 1em; }
+    .pair .nodes .btn {
+      padding: 0em 0.4em;
+      font-size: 0.9em;
+      float: right;
+      background-color: #be1313;
+      border-color: #900e0e; }

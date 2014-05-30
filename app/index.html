@@ -24,7 +24,7 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div id="loader" svg-loader svg-loader-timeout='3000' class="pageload-overlay" data-opening="M -18 -26.90625 L -18 86.90625 L 98 86.90625 L 98 -26.90625 L -18 -26.90625 Z M 40 -25.6875 C 70.750092 -25.6875 95.6875 -0.7500919 95.6875 30 C 95.6875 60.750092 70.750092 85.6875 40 85.6875 C 9.2499078 85.6875 -15.6875 60.750092 -15.6875 30 C -15.6875 -0.7500919 9.2499078 -25.6875 40 -25.6875 Z">
+    <div id="loader" svg-loader svg-loader-speed="800" svg-loader-timeout='3000' class="pageload-overlay" data-opening="M -18 -26.90625 L -18 86.90625 L 98 86.90625 L 98 -26.90625 L -18 -26.90625 Z M 40 -25.6875 C 70.750092 -25.6875 95.6875 -0.7500919 95.6875 30 C 95.6875 60.750092 70.750092 85.6875 40 85.6875 C 9.2499078 85.6875 -15.6875 60.750092 -15.6875 30 C -15.6875 -0.7500919 9.2499078 -25.6875 40 -25.6875 Z">
         <div class="loading" href="index.html">
            <h1><img src="/images/logo-white.png" alt="Nina" /></h1>
            <h3>Loading user information</h3>
@@ -40,10 +40,13 @@
     <div class="content wide-content" ng-controller="PairControllerCtrl">
       <div class="container pair" ng-if="!IsPaired">
 
-        <h4>Pair your sphere</h4>
+        <img src="/images/devboard.png" alt="" width="160" />
+        <br>
+        <br>
+        <h4>Pair a Developer Kit</h4>
         <form name="formPair">
           <label for="serial">
-            Enter your Serial Number
+            Enter Serial Number
           </label>
           <input type="text" name="serial" id="serial" ng-model="Serial" placeholder="Serial Number" ng-required="true">
           <div class="error" ng-show="formPair.serial.$dirty && formPair.serial.$invalid">Please enter your Serial Number</div>
@@ -52,16 +55,25 @@
             Pair
           </button>
         </form>
+
+        <div class="nodes" ng-if="Nodes.length > 0">
+          <h3>Currently Paired</h3>
+          <div class="node" ng-repeat="Node in Nodes">
+            {{ Node.name || 'Ninja Development Kit' }}
+            <div class="btn" hm-tap="ConfirmNodeDelete(Node)">Unpair</div>
+          </div>
+        </div>
       </div>
       <div class="container pair" ng-if="IsPaired">
         <h4>Congratulations</h4>
         <p>Your Spheramid is paired</p>
 
-        <div ng-if="Node.local_ip">
-          <img src="/images/spheramid.png" alt="Spheramid" />
-          <h5>Your Spheramid's local ip address is {{ Node.local_ip }}</h5>
+        <div ng-if="Node.metadata.local_ip">
+          <img src="/images/devboard.png" alt="Spheramid" width="210" />
+          <br><br>
+          <h5>Your Spheramid's local ip address is {{ Node.metadata.local_ip }}</h5>
           <small>Note: you will need to be on the same network to gain access</small><br><br>
-          <a class="btn" href="http://{{ Node.local_ip }}">Go to my Sphere</a>
+          <a class="btn" href="http://{{ Node.metadata.local_ip }}">Go to my Sphere</a>
         </div>
       </div>
     </div>

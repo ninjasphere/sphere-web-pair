@@ -18,13 +18,24 @@
           'node_id':'HELLO1234568888YYY',
           'name': 'Theo'};
 
+        var nodes = [
+          { node_id: '123456789', name: 'My Dev Kit 1'},
+          { node_id: '123456789', name: 'My Dev Kit 2'}
+        ];
+
         $httpBackend.whenGET('/rest/v1/user').respond(function() {
           return [200, user];
         });
 
+        $httpBackend.whenGET('/rest/v1/node').respond(nodes);
+
+        $httpBackend.whenDELETE('/rest/v1/node/123456789').respond(function() {
+          return [200, { success: true }];
+        })
+
         $httpBackend.whenPOST('/rest/v1/node').respond(function(method, url, data) {
 
-          return [200, { node_id: '123456789', local_ip: 'www.google.com', code: 32, message: "Could not find Spheramid"}];
+          return [200, { node_id: '123456789', metadata: { local_ip: 'www.google.com'}, code: 32, message: "Could not find Spheramid"}];
         })
 
       $httpBackend.whenGET(/^\/views\//).passThrough();

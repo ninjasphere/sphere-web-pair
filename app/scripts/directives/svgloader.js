@@ -105,8 +105,9 @@ angular.module('sphereWebPairApp')
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
 
+        var loadSpeed = (attrs.svgLoaderSpeed) ? parseInt(attrs.svgLoaderSpeed, 10) : 300;
 
-        var loader = new SVGLoader(element[0], { speedIn: 300, easingIn: mina.easeinout });
+        var loader = new SVGLoader(element[0], { speedIn: loadSpeed, easingIn: mina.easeinout });
 
         var loading = element.find('.loading');
 
@@ -116,7 +117,7 @@ angular.module('sphereWebPairApp')
           $timeout(function() {
             element.remove();
             loader = null;
-          }, 400);
+          }, loadSpeed);
         });
 
       }

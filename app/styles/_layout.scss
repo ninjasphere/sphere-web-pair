@@ -1,7 +1,6 @@
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	background-color: hsl(214,48%,14%);
 	position: relative;
 	margin: 0px;
 	font-size: 12px;
@@ -48,11 +47,11 @@ input.search{
 	top: 11px;
 }
 
-.header{
+header{
+	background: hsl(215,47%,14%);
 	margin-bottom: 60px;
 	h1, h2, h3, h4, h5 {
-		float: left;
-		margin-top: 5px;
+
 	}
 }
 
@@ -439,23 +438,15 @@ input.search{
 
 .content {
 	min-width: 400px;
-	min-height: 620px;
-	margin-bottom: 100px;
-	padding-bottom: 50px;
-	overflow: hidden;
+	// min-height: 620px;
+	// margin-bottom: 100px;
+	// padding-bottom: 50px;
+	// overflow: hidden;
 	position: relative;
-	background: #fff;
-	margin-left: 177px;
-	border-left: 1px solid #dae3e9;
-	border-bottom: 1px solid #dae3e9;
-	border-radius: 0px 0px 0px 5px;
+	// background: #fff;
+	// margin-left: 177px;
 	z-index: 1;
-
-	-webkit-transition: margin-left .3s ease;
-	-moz-transition: margin-left .3s ease;
-	-o-transition: margin-left .3s ease;
-	-ms-transition: margin-left .3s ease;
-	transition: margin-left .3s ease;
+	@include transition(all 0.3s);
 
 	&.wide-content {
 		margin-left: 0;
@@ -564,6 +555,18 @@ input.search{
     width: 1170px; }
 }
 
+
+.absolute-left {
+	position: absolute;
+	left: 1em;
+	bottom: 1em;
+}
+
+.absolute-right {
+	position: absolute;
+	right: 1em;
+	bottom: 1em;
+}
 
 /* responsive */
 @media (max-width: 1020px) {
