@@ -27,6 +27,29 @@ angular.module('sphereWebPairApp')
   .value('LOADED', 'loaded')
 
 
+angular.module('sphereWebPairApp').factory('authInterceptor', function ($rootScope, $q, $window) {
+  return {
+    request: function (config) {
+      config.headers = config.headers || {};
+      if ($window.sessionStorage.token) {
+        config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+      }
+      return config;
+    },
+    response: function (response) {
+      if (response.status === 401 || response.status === 403) {
+        // handle the case where the user is not authenticated
+        window.location.href='/auth/ninja';
+      }
+      return response || $q.when(response);
+    }
+  };
+});
+
+angular.module('sphereWebPairApp').config(function ($httpProvider) {
+  $httpProvider.interceptors.push('authInterceptor');
+});
+
 angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout, SERVER, LOADED, USER_LOADED) {
 
   var doLogin = function(user) {
@@ -34,13 +57,22 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
     $rootScope.$broadcast(USER_LOADED, user);
 
     $rootScope.User = user;
-  }
+  };
 
-
-  $timeout(function() {
+  var doGetUser = function(session) {
     var userResource = $resource('/rest/v1/user', {});
     userResource.get(function(response) {
       doLogin(response);
+    }, function error(response) {
+      window.location.href='/auth/ninja';
+    });
+  };
+
+  $timeout(function() {
+    var sessionResource = $resource('/rest/v1/auth/session_token', {});
+    sessionResource.get(function(response) {
+      window.sessionStorage.token = response['data']['token'];
+      doGetUser(response);
     }, function error(response) {
       window.location.href='/auth/ninja';
     });
