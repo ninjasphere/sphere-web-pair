@@ -27,8 +27,6 @@ angular.module('sphereWebPairApp')
       })
     }
 
-    $scope.LoadSpheres();
-
     /**
      * Pairs a new sphere / dev kit
      */
@@ -95,6 +93,7 @@ angular.module('sphereWebPairApp')
 
     $rootScope.$on(USER_LOADED, function(event, user) {
       $scope.User = user;
+      $scope.LoadSpheres();
     })
 
   });
