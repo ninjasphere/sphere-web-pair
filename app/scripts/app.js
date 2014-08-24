@@ -59,10 +59,10 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
     $rootScope.User = user;
   };
 
-  var doGetUser = function(session) {
+  var doGetUser = function() {
     var userResource = $resource('/rest/v1/user', {});
     userResource.get(function(response) {
-      doLogin(response);
+      doLogin(response['data']);
     }, function error(response) {
       window.location.href='/auth/ninja';
     });
@@ -72,7 +72,7 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
     var sessionResource = $resource('/rest/v1/auth/session_token', {});
     sessionResource.get(function(response) {
       window.sessionStorage.token = response['data']['token'];
-      doGetUser(response);
+      doGetUser();
     }, function error(response) {
       window.location.href='/auth/ninja';
     });

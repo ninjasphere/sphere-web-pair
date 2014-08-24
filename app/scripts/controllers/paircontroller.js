@@ -23,7 +23,7 @@ angular.module('sphereWebPairApp')
     $scope.LoadSpheres = function() {
 
       NodeResource.get(function(response) {
-        $scope.Nodes = response.nodes;
+        $scope.Nodes = response.data;
       })
     }
 
@@ -36,8 +36,8 @@ angular.module('sphereWebPairApp')
         NodeResource.save({ nodeId: this.Serial }, function success(response) {
           $timeout(function() {
             $scope.Pairing = false;
-            if (response.node_id){
-              $scope.PairSuccess(response)
+            if (response.data.node_id){
+              $scope.PairSuccess(response.data)
             }
           }, 2000);
         }, function error(response) {
