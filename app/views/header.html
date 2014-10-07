@@ -13,7 +13,8 @@
         </a>
     </div>
     <div class="pull-right">
-      <div class="item" ng-if="User.name"><span>{{ User.name }}</span></div>
+      <a class="item" href="{{ AccountLink }}" ng-if="User.name"><span>{{ User.name }}</span></a>
+      <a class="item" href="{{ LogoutLink }}" ng-if="User.name"><span>Logout</span></a>
     </div>
   </div>
 </header>

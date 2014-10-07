@@ -27,7 +27,7 @@ angular.module('sphereWebPairApp')
   .value('LOADED', 'loaded')
 
 
-angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout, SERVER, LOADED, USER_LOADED) {
+angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout, $window, SERVER, LOADED, USER_LOADED) {
 
   var doLogin = function(user) {
     $rootScope.$broadcast(LOADED);
@@ -35,6 +35,10 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
 
     $rootScope.User = user;
   }
+
+
+  $rootScope.AccountLink = $window.location.href.replace('api.', 'id.');
+  $rootScope.LogoutLink = $window.location.href.replace('api.', 'id.') + 'auth/logout';
 
 
   $timeout(function() {

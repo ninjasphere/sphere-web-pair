@@ -56,6 +56,18 @@ header{
 }
 
 /* Custom navbar stuff */
+.navbar {
+	.pull-right {
+		> .item {
+			margin: 0 8px;
+
+			&:hover {
+				color: white;
+			}
+		}
+	}
+}
+
 
 /* search input */
 .navbar-inverse {
