@@ -50,7 +50,7 @@ angular.module('sphereWebPairApp').config(function ($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
 });
 
-angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout, SERVER, LOADED, USER_LOADED) {
+angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout, $window, SERVER, LOADED, USER_LOADED) {
 
   var doLogin = function(user) {
     $rootScope.$broadcast(LOADED);
@@ -67,6 +67,9 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
       window.location.href='/auth/ninja';
     });
   };
+
+  $rootScope.AccountLink = $window.location.href.replace('api.', 'id.');
+  $rootScope.LogoutLink = $window.location.href.replace('api.', 'id.') + 'auth/logout';
 
   $timeout(function() {
     var sessionResource = $resource('/rest/v1/auth/session_token', {});
