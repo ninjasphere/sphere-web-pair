@@ -72,10 +72,20 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
   $rootScope.LogoutLink = $window.location.href + 'auth/logout';
 
   $rootScope.Logout = function() {
-    var idLogoutLink = $window.location.href.replace('api', 'id') + 'auth/logout';
-    $.get(idLogoutLink, function(response) {
+
+    var localLogout = function() {
       var apiLogoutLink = $window.location.href + 'auth/logout';
       $window.location.href = apiLogoutLink;
+    };
+
+    var idLogoutLink = $window.location.href.replace('api', 'id') + 'auth/logout';
+    $.ajax({
+      type: 'GET',
+      url: idLogoutLink,
+      async: false,
+      contentType: 'application/json',
+      dataType: 'jsonp',
+      jsonpCallback: localLogout;
     });
 
   };
