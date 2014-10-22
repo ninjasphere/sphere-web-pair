@@ -71,6 +71,15 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
   $rootScope.AccountLink = $window.location.href.replace('api.', 'id.');
   $rootScope.LogoutLink = $window.location.href + 'auth/logout';
 
+  $rootScope.Logout = function() {
+    var idLogoutLink = $window.location.href.replace('api', 'id') + 'auth/logout';
+    $.get(idLogoutLink, function(response) {
+      var apiLogoutLink = $window.location.href + 'auth/logout';
+      $window.location.href = apiLogoutLink;
+    });
+
+  };
+
   $timeout(function() {
     var sessionResource = $resource('/rest/v1/auth/session_token', {});
     sessionResource.get(function(response) {

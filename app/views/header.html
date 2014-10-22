@@ -14,7 +14,7 @@
     </div>
     <div class="pull-right">
       <a class="item" ng-href="{{AccountLink }}" ng-if="User.name"><span>{{ User.name }}</span></a>
-      <a class="item" ng-href="{{ LogoutLink }}" ng-if="User.name"><span>Logout</span></a>
+      <a class="item" hm-tap="Logout()" ng-if="User.name"><span>Logout</span></a>
     </div>
   </div>
 </header>
