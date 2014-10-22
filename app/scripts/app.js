@@ -69,7 +69,7 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
   };
 
   $rootScope.AccountLink = $window.location.href.replace('api.', 'id.');
-  $rootScope.LogoutLink = $window.location.href.replace('api.', 'id.') + 'auth/logout';
+  $rootScope.LogoutLink = $window.location.href + 'auth/logout';
 
   $timeout(function() {
     var sessionResource = $resource('/rest/v1/auth/session_token', {});
