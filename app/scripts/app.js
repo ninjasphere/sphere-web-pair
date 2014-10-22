@@ -85,7 +85,7 @@ angular.module('sphereWebPairApp').run(function($rootScope, $resource, $timeout,
       async: false,
       contentType: 'application/json',
       dataType: 'jsonp',
-      jsonpCallback: localLogout;
+      jsonpCallback: localLogout
     });
 
   };
